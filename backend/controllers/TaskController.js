@@ -41,6 +41,17 @@ exports.showAllEntries = (req, res) => {
     });
 };
 
+exports.getEntryById = (req, res) => {
+
+    const {id} = req.params;
+    const q = `SELECT * FROM crude_table WHERE ID=${id}`;
+
+    connection.query(q, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json(result);
+    });
+};
+
 exports.deleteEntry = (req,res)=>{
     const {id} = req.params;
 
@@ -55,6 +66,41 @@ exports.deleteEntry = (req,res)=>{
             result
         })
 
+    });
+
+}
+
+exports.editEntry = (req,res)=>{
+    const {id} = req.params;
+    const {Name} = req.body;
+
+    const q = `UPDATE crude_table SET ? WHERE ID=${id}`
+
+    connection.query(q, { Name }, (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json({
+            success:true,
+            message:"Entry updated successfully",
+            result
+
+        });
+    });
+
+}
+
+exports.searchEntries = (req,res)=>{
+    const {Name} = req.params;
+
+    const q = `SELECT * FROM crude_table WHERE Name=?`
+
+    connection.query(q, [ Name] , (err, result) => {
+        if (err) return res.json(err);
+        return res.status(200).json({
+            success:true,
+            message:"Entry updated successfully",
+            result
+
+        });
     });
 
 }

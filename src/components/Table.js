@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-const Table = ({ entries,deleteHandler }) => {
+const Table = ({ entries,deleteHandler,editHandler }) => {
 
   
   return (
@@ -22,10 +22,10 @@ const Table = ({ entries,deleteHandler }) => {
               <td>{entry.Name}</td>
               <td>{entry.Date_added}</td>
               <td>
-                <button onClick={()=>deleteHandler(entry.ID)}>Delete</button>
+                <button className="delete-btn" onClick={()=>deleteHandler(entry.ID)}>Delete</button>
               </td>
               <td>
-                <button>Edit</button>
+                <button className="edit-btn" onClick={()=>editHandler(entry.ID)}>Edit</button>
               </td>
             </tr>
           ))

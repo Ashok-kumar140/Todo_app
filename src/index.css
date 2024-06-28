@@ -17,7 +17,7 @@ body {
   justify-content: center;
 }
 .input-conatiner {
-  width: 800px;
+  width: 1000px;
   margin: 30px auto;
   display: flex;
   align-items: center;
@@ -26,11 +26,57 @@ body {
   row-gap: 10px;
 }
 
+#userName{
+  padding: 4px;
+  margin: 4px;
+}
+.addBtn{
+  padding: 6px;
+  background-color: green;
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.addBtn:hover{
+ 
+  background-color: rgb(39, 177, 39);
+  transition: all;
+  transition-duration: 300ms;
+}
+
+.delete-btn{
+  padding: 6px;
+  background-color: rgb(134, 34, 34);
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.delete-btn:hover{
+ 
+  background-color: rgb(84, 32, 16);
+  transition: all;
+  transition-duration: 300ms;
+}
+.edit-btn{
+  padding: 6px;
+  background-color: rgb(25, 101, 194);
+  border: none;
+  border-radius: 5%;
+  cursor: pointer;
+}
+.edit-btn:hover{
+ 
+  background-color: rgb(15, 71, 203);
+  transition: all;
+  transition-duration: 300ms;
+}
+
 .table-container {
   width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 20px auto;
 }
 
 table {
