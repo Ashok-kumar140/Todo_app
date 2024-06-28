@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-app.use("/api/v1/auth", taskRoute);
+app.use("/api/v1", taskRoute);
 
 
 

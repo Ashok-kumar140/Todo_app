@@ -17,3 +17,5 @@ connection.connect(function(err){
 
     console.log("DB Connected successfully as id " +connection.threadId);
 });
+
+module.exports = connection;
