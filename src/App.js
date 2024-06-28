@@ -27,6 +27,7 @@ function App() {
       if (data.success) {
         setUserName("");
         toast.success("Entry added successfully");
+        showAllEntries();
       }
     } catch (error) {
       console.log("Error while adding new entry", error);
