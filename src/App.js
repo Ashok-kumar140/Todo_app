@@ -106,7 +106,7 @@ function App() {
     setSearchMode(true);
     try {
       const { data } = await axios.get(
-        `${process.env.BASE_URL}/searchEntries/${searchUser}`
+        `${process.env.REACT_APP_BASE_URL}/searchEntries/${searchUser}`
       );
 
       console.log("serach", data.result);
