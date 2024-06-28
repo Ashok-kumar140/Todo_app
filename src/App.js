@@ -10,7 +10,7 @@ function App() {
   const [userId, setUserId] = useState("");
   const [searchUser, setSearchUser] = useState("");
   const [searchList, setSearchList] = useState([]);
-  const [searchMode,setSearchMode] = useState(false);
+  const [searchMode, setSearchMode] = useState(false);
 
   useEffect(() => {
     showAllEntries();
@@ -18,12 +18,11 @@ function App() {
 
   const addEntry = async () => {
     try {
-      const { data } = await axios.post(
-        `${process.env.BASE_URL}/api/v1/addEntry`,
-        {
-          Name: userName,
-        }
-      );
+      const url = process.env.REACT_APP_BASE_URL + "/addEntry";
+      console.log(url);
+      const { data } = await axios.post(url, {
+        Name: userName,
+      });
       // console.log("Data entry", res);
       if (data.success) {
         setUserName("");
@@ -37,8 +36,10 @@ function App() {
 
   const showAllEntries = async () => {
     try {
+      const url = process.env.REACT_APP_BASE_URL + "/getAllEntries";
+      console.log(url);
       const { data } = await axios.get(
-        "${process.env.BASE_URL}/api/v1/getAllEntries"
+        url
       );
       // console.log("All Entries", data);
       setEntries(data);
@@ -49,7 +50,7 @@ function App() {
   const deleteEntry = async (id) => {
     try {
       const { data } = await axios.delete(
-        `${process.env.BASE_URL}/api/v1/deleteEntry/${id}`
+        `${process.env.REACT_APP_BASE_URL}/deleteEntry/${id}`
       );
       if (data.success) {
         showAllEntries();
@@ -64,7 +65,7 @@ function App() {
   const getEntryById = async (id) => {
     try {
       const { data } = await axios.get(
-        `${process.env.BASE_URL}/api/v1/getEntry/${id}`
+        `${process.env.REACT_APP_BASE_URL}/getEntry/${id}`
       );
       console.log("data after updated", data[0].Name);
 
@@ -81,7 +82,7 @@ function App() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `${process.env.BASE_URL}/api/v1/editEntry/${userId}`,
+        `${process.env.REACT_APP_BASE_URL}/editEntry/${userId}`,
         { Name: userName }
       );
 
@@ -180,26 +181,26 @@ function App() {
               value={searchUser}
               onChange={(e) => setSearchUser(e.target.value)}
             />
-            <button className="addBtn">
-              Search
-            </button>
+            <button className="addBtn">Search</button>
           </div>
         </form>
       </div>
-      <div className="table-container" style={{"fontSize":"18px", "fontWeight":"bold"}}>
-      {
-        searchMode && <div>Search results for "{searchUser}"</div>
-      }
+      <div
+        className="table-container"
+        style={{ fontSize: "18px", fontWeight: "bold" }}
+      >
+        {searchMode && <div>Search results for "{searchUser}"</div>}
       </div>
       <div className="table-container">
-        
-        {
-          searchList && searchList.length>0?(
-            <Table entries={searchList} editHandler={editHandler} deleteHandler={deleteHandler}/>
-          ):(
-            searchMode && <div>No results found.</div>
-          )
-        }
+        {searchList && searchList.length > 0 ? (
+          <Table
+            entries={searchList}
+            editHandler={editHandler}
+            deleteHandler={deleteHandler}
+          />
+        ) : (
+          searchMode && <div>No results found.</div>
+        )}
       </div>
     </>
   );
