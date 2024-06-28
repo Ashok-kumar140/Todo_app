@@ -19,7 +19,7 @@ function App() {
   const addEntry = async () => {
     try {
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/addEntry`,
+        `${process.env.BASE_URL}/api/v1/addEntry`,
         {
           Name: userName,
         }
@@ -38,7 +38,7 @@ function App() {
   const showAllEntries = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/getAllEntries"
+        "${process.env.BASE_URL}/api/v1/getAllEntries"
       );
       // console.log("All Entries", data);
       setEntries(data);
@@ -49,7 +49,7 @@ function App() {
   const deleteEntry = async (id) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:4000/api/v1/deleteEntry/${id}`
+        `${process.env.BASE_URL}/api/v1/deleteEntry/${id}`
       );
       if (data.success) {
         showAllEntries();
@@ -64,7 +64,7 @@ function App() {
   const getEntryById = async (id) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:4000/api/v1/getEntry/${id}`
+        `${process.env.BASE_URL}/api/v1/getEntry/${id}`
       );
       console.log("data after updated", data[0].Name);
 
@@ -81,7 +81,7 @@ function App() {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/editEntry/${userId}`,
+        `${process.env.BASE_URL}/api/v1/editEntry/${userId}`,
         { Name: userName }
       );
 
@@ -105,7 +105,7 @@ function App() {
     setSearchMode(true);
     try {
       const { data } = await axios.get(
-        `http://localhost:4000/api/v1/searchEntries/${searchUser}`
+        `${process.env.BASE_URL}/searchEntries/${searchUser}`
       );
 
       console.log("serach", data.result);
