@@ -193,7 +193,7 @@ function App() {
         {searchMode && <div>Search results for "{searchUser}"</div>}
       </div>
       <div className="table-container">
-        {searchList && searchList.length > 0 ? (
+        {searchUser && searchList.length > 0 ? (
           <Table
             entries={searchList}
             editHandler={editHandler}
